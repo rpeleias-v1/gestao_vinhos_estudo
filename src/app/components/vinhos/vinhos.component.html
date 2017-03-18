@@ -1,0 +1,30 @@
+<h2>Gestão de Vinhos</h2>
+
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Uva</th>
+      <th>Classificação</th>
+      <th>Safra</th>
+      <th>Fabricante</th>
+      <th>País de Origem</th>      
+      <th>Visualizar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vinho of vinhos">
+      <th scope="row">{{vinho.id}}</th>
+      <th>{{vinho.nome}}</th>
+      <th>{{vinho.uva}}</th>
+      <th>{{vinho.classificacao}}</th>
+      <th>{{vinho.anoSafra}}</th>
+      <th>{{vinho.fabricante}}</th>
+      <th>{{vinho.paisOrigem}}</th>
+      <th>
+        <button (click)="visualizar(vinho)" class="btn btn-primary">Visualizar</button>
+      </th>
+    </tr>
+  </tbody>
+</table>

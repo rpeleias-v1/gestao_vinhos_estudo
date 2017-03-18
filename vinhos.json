@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "nome": "Casillero Del Diablo",
+        "uva": "Cabernet Sauvignon",
+        "classificacao": "Branco",
+        "anoSafra": 2012,
+        "fabricante": "Concha Y Toro",        
+        "paisOrigem": "Chile"
+    },
+    {
+        "id": 2,
+        "nome": "Salton Talento",
+        "uva": "Carmènere",
+        "classificacao": "Tinto",
+        "anoSafra": 2010,
+        "fabricante": "Vinícola Salton",        
+        "paisOrigem": "Brasil"
+    },
+    {
+        "id": 3,
+        "nome": "Salton Desejo",
+        "uva": "Merlot",
+        "classificacao": "Tinto",
+        "anoSafra": 2012,
+        "fabricante": "Vinícola Salton",        
+        "paisOrigem": "Brasil"
+    },
+    {
+        "id": 4,
+        "nome": "Pera Graça",
+        "uva": "Cabernet Sauvignon",
+        "classificacao": "Tinto",
+        "anoSafra": 1953,
+        "fabricante": "Pera Manca",        
+        "paisOrigem": "Portugal"
+    },
+    {
+        "id": 5,
+        "nome": "Pera Graça",
+        "uva": "Cabernet Sauvignon",
+        "classificacao": "Branco",
+        "anoSafra": 1953,
+        "fabricante": "Pera Manca",        
+        "paisOrigem": "Portugal"
+    }
+] 

@@ -7,7 +7,7 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
     
     backend.connections.subscribe((connection: MockConnection) => {
         
-        let vinhos = JSON.parse(localStorage.getItem('vinhos')) || localStorage.setItem('vinhos', JSON.stringify([]));;
+        let vinhos = JSON.parse(localStorage.getItem('vinhos')) || localStorage.setItem('vinhos', JSON.stringify([]));
 
         setTimeout(() => {
             if(connection.request.url.endsWith('/vinhos') && connection.request.method === RequestMethod.Get) {
@@ -46,6 +46,26 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                 ));
             }
 
+            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Put) {
+                let vinhoAtualizado = JSON.parse(connection.request.getBody());
+                let vinhoCadastrado = vinhos.filter((vinho:Vinho) => {
+                    return vinho.id === vinhoAtualizado.id;
+                })[0];
+
+                if(!vinhoCadastrado) {
+                    return connection.mockError(new Error('Atenção! O vinho informado não está cadastrado no sistema'));
+                }                              
+                vinhos = vinhos.filter((vinhoAtual:Vinho) => {
+                    return vinhoAtual.id !== vinhoAtualizado.id
+                })
+                vinhos.push(vinhoAtualizado);
+                localStorage.setItem('vinhos', JSON.stringify(vinhos));
+
+                connection.mockRespond(new Response(
+                    new ResponseOptions({ status: 200})
+                ));
+            }
+
             if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Delete){
                 let vinhoParts = connection.request.url.split('/');
                 let idVinho = parseInt(vinhoParts[vinhoParts.length - 1]);
@@ -53,7 +73,7 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                     let vinho = vinhos[i];
                     if(vinho.id === idVinho) {
                         vinhos.splice(i, 1);
-                        localStorage.setItem('vinhos', vinhos);
+                        localStorage.setItem('vinhos', JSON.stringify(vinhos));
                         break;
                     }
                 }

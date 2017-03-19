@@ -28,24 +28,26 @@ export class VinhosService {
       .catch(this.handleError);
   } 
 
-  post(vinho: Vinho): Promise<any> {
+  post(vinho: Vinho): Promise<Response> {
     return this.http.post(this.apiUrl, JSON.stringify(vinho), this.prepararHeader())
       .toPromise()
-      .then(data => data.json())
+      .then(data => data)
       .catch(this.handleError);
   }
 
   put(id:number, vinho: Vinho):Promise<Response> {
-    return this.http.put(this.apiUrl + `/${id}`, vinho, this.prepararHeader())
+    return this.http.put(this.apiUrl + `/${id}`, JSON.stringify(vinho), this.prepararHeader())
       .toPromise()
-      .then(data => data.json())
+      .then(data => {
+        return data;
+      })
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<any> {
+  delete(id: number): Promise<Response> {
     return this.http.delete(this.apiUrl + `/${id}`, this.prepararHeader())
       .toPromise()
-      .then(data => data.json())
+      .then(data => data)
       .catch(this.handleError);
   }
 

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, RequestOptionsArgs, Headers, Response } from '@angular/http';
 import { Vinho } from '../models/vinho';
 
+import { AutenticacaoService } from './autenticacao.service';
+
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -11,7 +13,7 @@ export class VinhosService {
 
   private apiUrl = '/vinhos';
 
-  constructor(private http: Http) {    
+  constructor(private http: Http, private autenticacaoService: AutenticacaoService) {    
    }
 
   getAll(): Promise<Vinho[]> {
@@ -57,7 +59,7 @@ export class VinhosService {
   }
 
   private prepararHeader(): RequestOptions {
-    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.autenticacaoService.token}`});
     let requestOptions = new RequestOptions({ headers: headers });
     return requestOptions;
   }

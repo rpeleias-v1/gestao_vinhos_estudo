@@ -4,6 +4,9 @@ import { RouterModule, Routes} from '@angular/router';
 import { VinhosComponent } from './components/vinhos/vinhos.component';
 import { DetalhesVinhosComponent } from './components/detalhes-vinhos/detalhes-vinhos.component';
 import { CadastroVinhosComponent } from './components/cadastro-vinhos/cadastro-vinhos.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { AuthGuard } from './guard/auth.guard';
 
 export const routes:Routes = [
     {
@@ -13,19 +16,27 @@ export const routes:Routes = [
     },
     {
         path: 'vinhos',
-        component: VinhosComponent
+        component: VinhosComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'detalhes-vinhos/:id',
-        component: DetalhesVinhosComponent
+        component: DetalhesVinhosComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'cadastro-vinhos',
-        component: CadastroVinhosComponent
+        component: CadastroVinhosComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'cadastro-vinhos/:id',
-        component: CadastroVinhosComponent
+        component: CadastroVinhosComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
     {path: '**', redirectTo: '/vinhos'}
 ]

@@ -12,15 +12,19 @@ import { VinhosComponent } from './components/vinhos/vinhos.component';
 import { DetalhesVinhosComponent } from './components/detalhes-vinhos/detalhes-vinhos.component';
 
 import { VinhosService} from './services/vinhos.service';
+import { AutenticacaoService} from './services/autenticacao.service';
+import { AuthGuard } from './guard/auth.guard';
 import { fakeBackend } from './fake-backend/fake-backend';
 import { CadastroVinhosComponent } from './components/cadastro-vinhos/cadastro-vinhos.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VinhosComponent,
     DetalhesVinhosComponent,
-    CadastroVinhosComponent
+    CadastroVinhosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,8 @@ import { CadastroVinhosComponent } from './components/cadastro-vinhos/cadastro-v
   ],
   providers: [
     VinhosService,
+    AutenticacaoService,
+    AuthGuard,
     { provide: Http, useFactory: fakeBackend, deps: [MockBackend, BaseRequestOptions]},
     MockBackend,
     BaseRequestOptions

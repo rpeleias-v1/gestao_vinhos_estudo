@@ -6,10 +6,32 @@ import { Vinho } from '../models/vinho';
 export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
     
     backend.connections.subscribe((connection: MockConnection) => {
+
+        let usuarioFake = {
+            id: 1,
+            login: 'rpeleias',
+            senha: 'rpeleias',
+            nome: 'Rodrigo Peleias',
+            email: 'rpeleias@hotmail.com'
+        }
         
         let vinhos = JSON.parse(localStorage.getItem('vinhos')) || localStorage.setItem('vinhos', JSON.stringify([]));
 
         setTimeout(() => {
+
+            if(connection.request.url.endsWith('/login') && connection.request.method === RequestMethod.Post) {
+                let params = JSON.parse(connection.request.getBody());
+
+                if(params.login === usuarioFake.login && params.senha === usuarioFake.senha) {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({ status: 200, body: { token:'fake-jwt-token', usuario: usuarioFake.nome, email: usuarioFake.email}})
+                    ))
+                } else {
+                    connection.mockRespond(new Response(
+                        new ResponseOptions({status: 401})
+                    ))
+                }
+            }
             if(connection.request.url.endsWith('/vinhos') && connection.request.method === RequestMethod.Get) {
                 connection.mockRespond(new Response(
                     new ResponseOptions({status: 200, body: vinhos})

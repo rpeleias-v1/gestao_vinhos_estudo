@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+<nav *ngIf="autenticacaoService.usuarioLogado()" class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +12,7 @@
         <a class="nav-link" href="#" routerLink= "/cadastro-vinhos" routerLinkActive="active" >Novo vinho</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sair</a>
+          <a class="nav-link" href="#" (click)="autenticacaoService.logout()" routerLinkActive="active">Sair</a>
       </li>      
     </ul>
   </div>  

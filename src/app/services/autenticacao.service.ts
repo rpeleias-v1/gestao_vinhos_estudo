@@ -18,9 +18,10 @@ export class AutenticacaoService {
       .toPromise()
       .then((response: Response) => {
         let token = response.json() && response.json().token;
+        let nomeUsuario = response.json() && response.json().nomeUsuario;
         if(token) {
           this.token = token;
-          localStorage.setItem('usuarioLogado', JSON.stringify({login: login, token: token}));
+          localStorage.setItem('usuarioLogado', JSON.stringify({login: login, token: token, nomeUsuario: nomeUsuario}));
           return true;
         } else {
           return false;
@@ -35,6 +36,10 @@ export class AutenticacaoService {
   logout(): void {
     this.token = null;
     localStorage.removeItem('usuarioLogado');
+  }
+
+  getUsuarioLogado() {
+    return JSON.parse(localStorage.getItem('usuarioLogado'));
   }
 
 }

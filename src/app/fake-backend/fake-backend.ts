@@ -24,7 +24,7 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
 
                 if(params.login === usuarioFake.login && params.senha === usuarioFake.senha) {
                     connection.mockRespond(new Response(
-                        new ResponseOptions({ status: 200, body: { token:'fake-jwt-token', usuario: usuarioFake.nome, email: usuarioFake.email}})
+                        new ResponseOptions({ status: 200, body: { token:'fake-jwt-token', nomeUsuario: usuarioFake.nome, email: usuarioFake.email}})
                     ))
                 } else {
                     connection.mockRespond(new Response(

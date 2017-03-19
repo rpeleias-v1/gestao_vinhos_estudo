@@ -10,7 +10,7 @@
       <th>Safra</th>
       <th>Fabricante</th>
       <th>País de Origem</th>      
-      <th>Visualizar</th>
+      <th colspan="3">Ações</th>      
     </tr>
   </thead>
   <tbody>
@@ -24,6 +24,12 @@
       <th>{{vinho.paisOrigem}}</th>
       <th>
         <button (click)="visualizar(vinho)" class="btn btn-primary">Visualizar</button>
+      </th>
+      <th>
+        <button (click)="editar(vinho)" class="btn btn-warning">Editar</button>
+      </th>
+      <th>
+        <button (click)="excluir(vinho)" class="btn btn-danger">Excluir</button>
       </th>
     </tr>
   </tbody>

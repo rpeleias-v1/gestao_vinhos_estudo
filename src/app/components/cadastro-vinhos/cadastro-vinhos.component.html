@@ -1,3 +1,84 @@
-<p>
-  cadastro-vinhos works!
-</p>
+<div class="container">
+  <h2>Cadastro de Novo Vinho</h2>
+  <form #vinhoForm="ngForm" (ngSubmit)="salvar();vinhoForm.reset()">
+    <div class="form-group">
+      <label for="vinho">Nome</label>
+      <input type="text" class="form-control" id="nome" name="nome" maxlength="50" [(ngModel)]="vinho.nome" required #nome="ngModel">      
+    </div>
+    <div *ngIf="nome.errors && (nome.dirty || nome.touched)"
+          class="alert alert-danger">
+        <div [hidden]="!nome.errors.required">
+          Nome é um campo obrigatório
+        </div>            
+        <div [hidden]="!nome.errors.maxlength">
+          Nome deve ter no máximo 50 caracteres'
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="uva">Tipo Uva</label>
+      <select class="form-control" id="uva" name="uva" [(ngModel)]="vinho.uva" required #uva="ngModel">
+        <option *ngFor="let uva of uvas" [value]="uva">{{uva}}</option>
+      </select>
+      <div *ngIf="uva.errors && (uva.dirty || uva.touched)"
+          class="alert alert-danger">
+        <div [hidden]="!nome.errors.required">
+          Tipo da uva é um campo obrigatório
+        </div>                    
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="classificacao">Classificação</label>
+      <select class="form-control" id="classificacao" name="classificacao" [(ngModel)]="vinho.classificacao" required #classificacao="ngModel">
+        <option *ngFor="let classificacao of classificacoes" [value]="classificacao">{{classificacao}}</option>
+      </select>
+      <div *ngIf="classificacao.errors && (classificacao.dirty || classificacao.touched)"
+          class="alert alert-danger">
+        <div [hidden]="!classificacao.errors.required">
+          Classificação é um campo obrigatório
+        </div>                    
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="anoSafra">Ano da safra</label>
+      <input type="number" class="form-control" min="1950" max="2017" id="anoSafra" name="anoSafra" [(ngModel)]="vinho.anoSafra"
+        required #anoSafra="ngModel">      
+    </div>
+    <div *ngIf="anoSafra.errors && (anoSafra.dirty || anoSafra.touched)"
+          class="alert alert-danger">
+      <div [hidden]="!anoSafra.errors.required">
+        Ano da safra do vinho é um campo obrigatório
+      </div> 
+      <div [hidden]="!anoSafra.errors.min">
+        O valor mínimo de safra é 1950
+      </div>
+      <div [hidden]="!anoSafra.errors.max">
+        O valor máximo' de safra é 2017
+      </div>                    
+    </div>
+    <div class="form-group">
+      <label for="fabricante">Fabricante</label>
+      <input type="text" class="form-control" id="fabricante" name="fabricante" [(ngModel)]="vinho.fabricante" required #fabricante="ngModel">      
+    </div>    
+    <div *ngIf="fabricante.errors && (fabricante.dirty || fabricante.touched)"
+          class="alert alert-danger">
+      <div [hidden]="!fabricante.errors.required">
+        Fabricante do vinho é um campo obrigatório
+      </div>                           
+    </div>
+    <div class="form-group">
+      <label for="paisOrigem">País de origem</label>
+      <input type="text" class="form-control" id="paisOrigem" name="paisOrigem" [(ngModel)]="vinho.paisOrigem" required #paisOrigem="ngModel">      
+    </div>
+    <div *ngIf="paisOrigem.errors && (paisOrigem.dirty || paisOrigem.touched)"
+          class="alert alert-danger">
+      <div [hidden]="!paisOrigem.errors.required">
+        País e origem do vinho é um campo obrigatório
+      </div>                           
+    </div>
+    <div class="form-group" role="group">      
+      <button type="submit" class="btn btn-primary" [disabled]="!vinhoForm.form.valid">Salvar</button>
+      <button type="button" class="btn btn-warning" (click)="retornar($event)">Voltar</button>
+    </div>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Visualizar Vinhos</h2>
-  <form (ngSubmit)="salvar();vinhoForm.reset()" #vinhoForm="ngForm">
+  <form>
     <div class="form-group">
       <label for="vinho">Nome</label>
       <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="vinho.nome" readonly>      

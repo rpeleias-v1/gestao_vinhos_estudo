@@ -13,10 +13,13 @@ import { DetalhesVinhosComponent } from './components/detalhes-vinhos/detalhes-v
 
 import { VinhosService} from './services/vinhos.service';
 import { AutenticacaoService} from './services/autenticacao.service';
+import { NotificacaoService} from './services/notificacao.service';
+
 import { AuthGuard } from './guard/auth.guard';
 import { fakeBackend } from './fake-backend/fake-backend';
 import { CadastroVinhosComponent } from './components/cadastro-vinhos/cadastro-vinhos.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { LoginComponent } from './components/login/login.component';
     VinhosComponent,
     DetalhesVinhosComponent,
     CadastroVinhosComponent,
-    LoginComponent
+    LoginComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,7 @@ import { LoginComponent } from './components/login/login.component';
   providers: [
     VinhosService,
     AutenticacaoService,
+    NotificacaoService,
     AuthGuard,
     { provide: Http, useFactory: fakeBackend, deps: [MockBackend, BaseRequestOptions]},
     MockBackend,

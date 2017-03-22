@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { VinhosService} from '../../services/vinhos.service';
+import { NotificacaoService } from '../../services/notificacao.service';
 
 import { Vinho } from '../../models/vinho';
-
+import { Notificacao } from '../../models/notificacao';
  
 @Component({
   selector: 'cadastro-vinhos',
@@ -17,7 +18,12 @@ export class CadastroVinhosComponent implements OnInit {
   uvas: string[];
   classificacoes: string[];
 
-  constructor(private router:Router, private activatedRoute:ActivatedRoute, private vinhosService: VinhosService) { }
+  constructor(
+    private router:Router, 
+    private activatedRoute:ActivatedRoute, 
+    private vinhosService: VinhosService, 
+    private notificacaoService: NotificacaoService
+    ) { }
 
   ngOnInit() {
     this.inicializarValoresCadastro();
@@ -46,19 +52,19 @@ export class CadastroVinhosComponent implements OnInit {
   private atualizar(): void {
     this.vinhosService.put(this.vinho.id, this.vinho)
       .then(response => {
-        alert("Vinho atualizado com sucesso");
+        this.notificacaoService.adicionar(new Notificacao('Vinho atualizado com sucesso!', 'alert-success'));        
         console.log(response.status);
         this.router.navigate(['/vinhos']);
       })
       .catch(error => {
-        alert("Erro ao atualizar o vinho");
+        this.notificacaoService.adicionar(new Notificacao('Erro ao atualizar o vinho!', 'alert-danger'));         
         console.log(error);
       })
   }
 
   private criar(): void {
     this.vinhosService.post(this.vinho)
-      .then(response => {
+      .then(response => {        
         alert("Vinho cadastrado com sucesso");
         console.log(response.status);
         this.router.navigate(['/vinhos']);

@@ -1,0 +1,18 @@
+<div class="form-group">
+      <label for="vinho">Buscar vinho</label>
+      <input type="text" class="form-control" id="nome" name="buscaVinho" maxlength="50" [(ngModel)]="campoBusca" required #nome="ngModel">      
+    </div>
+<table class="table table-stripped table-hover">
+  <thead>
+    <tr *ngFor="let chave in chaves">
+      <th><{{propriedades[chave]}}/th>
+    </tr>    
+  </thead>
+  <tbody>
+    <tr *ngFor="let linha of linhas | tableFilter: campoBusca">
+      <span *ngFor="let chave in chaves">
+        <th>{{linha[chave]}}</th>
+      </span>
+    </tr>
+  </tbody>
+</table>

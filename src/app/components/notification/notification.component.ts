@@ -38,5 +38,11 @@ export class NotificationComponent implements OnInit {
   esconderVisibilidade(){
     this.visibilidade = this.visibilidade === 'shown' ? 'hidden' : 'shown';
   }
- 
+
+  getAlertType() {
+    if (this.notificacao) {
+      return `alert-${this.notificacao.tipo}`;
+    }
+    return 'alert-success';
+  }
 }

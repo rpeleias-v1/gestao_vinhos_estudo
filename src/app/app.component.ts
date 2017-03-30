@@ -10,6 +10,7 @@ import { NotificacaoService } from './services/notificacao.service';
 })
 export class AppComponent {
   title = 'Gestão de Vinhos';
+  dataHoje = new Date();
 
   constructor(private autenticacaoService: AutenticacaoService) { }
 }

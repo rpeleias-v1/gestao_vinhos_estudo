@@ -52,26 +52,22 @@ export class CadastroVinhosComponent implements OnInit {
   private atualizar(): void {
     this.vinhosService.put(this.vinho.id, this.vinho)
       .then(response => {
-        this.notificacaoService.adicionar(new Notificacao('Vinho atualizado com sucesso!', 'alert-success'));        
-        console.log(response.status);
+        this.notificacaoService.adicionar(new Notificacao(`Vinho atualizado com sucesso!`, 'success'));                
         this.router.navigate(['/vinhos']);
       })
       .catch(error => {
-        this.notificacaoService.adicionar(new Notificacao('Erro ao atualizar o vinho!', 'alert-danger'));         
-        console.log(error);
+        this.notificacaoService.adicionar(new Notificacao('Erro ao atualizar o vinho!', 'danger'));                 
       })
   }
 
   private criar(): void {
     this.vinhosService.post(this.vinho)
       .then(response => {        
-        alert("Vinho cadastrado com sucesso");
-        console.log(response.status);
+        this.notificacaoService.adicionar(new Notificacao(`Vinho criado com sucesso!`, 'success'));                
         this.router.navigate(['/vinhos']);
       })
       .catch(error => {
-        alert("Erro ao salvar o vinho");
-        console.log(error);
+        this.notificacaoService.adicionar(new Notificacao('Erro ao criar o vinho!', 'danger'));         
       })
   }
 

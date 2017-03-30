@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Vinho } from '../../models/vinho';
+import { Notificacao } from '../../models/notificacao';
 
 import { VinhosService} from '../../services/vinhos.service';
+import { NotificacaoService } from '../../services/notificacao.service';
 
 @Component({
   selector: 'vinhos',
@@ -11,9 +13,11 @@ import { VinhosService} from '../../services/vinhos.service';
 })
 export class VinhosComponent implements OnInit {
 
-  vinhos: Array<Vinho>;
+  vinhos: Array<Vinho> = new Array<Vinho>();
 
-  constructor(private router: Router, private vinhosService: VinhosService) { }
+  buscaVinho: string;
+
+  constructor(private router: Router, private vinhosService: VinhosService, private notificacaoService: NotificacaoService) { }
 
   ngOnInit() {
     this.listar();
@@ -22,8 +26,7 @@ export class VinhosComponent implements OnInit {
   private listar(): void {
     this.vinhosService.getAll()
       .then(vinhos => {
-        this.vinhos = vinhos
-        console.log(vinhos);
+        this.vinhos = vinhos        
       })
       .catch(error => console.error(error));
   }
@@ -39,12 +42,11 @@ export class VinhosComponent implements OnInit {
   excluir(vinho:Vinho) {
     this.vinhosService.delete(vinho.id)
       .then(response => {
-        alert("Vinho excluído com sucesso");
+        this.notificacaoService.adicionar(new Notificacao(`Vinho excluído com sucesso!`, 'warning'));                
         this.listar();
       })
       .catch(error => {
-        alert("Erro ao excluir vinho");
-        console.log(error);
+        this.notificacaoService.adicionar(new Notificacao(`Erro ao excluir vinho`, 'danger'));                                
       });
   }
 

@@ -64,7 +64,7 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                 localStorage.setItem('vinhos', JSON.stringify(vinhos));
 
                 connection.mockRespond(new Response(
-                    new ResponseOptions({ status: 200})
+                    new ResponseOptions({ status: 201})
                 ));
             }
 
@@ -84,7 +84,7 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                 localStorage.setItem('vinhos', JSON.stringify(vinhos));
 
                 connection.mockRespond(new Response(
-                    new ResponseOptions({ status: 200})
+                    new ResponseOptions({ status: 201})
                 ));
             }
 

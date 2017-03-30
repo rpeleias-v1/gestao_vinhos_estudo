@@ -20,6 +20,8 @@ import { fakeBackend } from './fake-backend/fake-backend';
 import { CadastroVinhosComponent } from './components/cadastro-vinhos/cadastro-vinhos.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { TableFilterPipe } from './pipes/table-filter.pipe';
+//import { DataTableComponent } from './components/data-table/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NotificationComponent } from './components/notification/notification.co
     DetalhesVinhosComponent,
     CadastroVinhosComponent,
     LoginComponent,
-    NotificationComponent
+    NotificationComponent,
+    TableFilterPipe,
+    //DataTableComponent
   ],
   imports: [
     BrowserModule,

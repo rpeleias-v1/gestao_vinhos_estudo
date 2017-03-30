@@ -16,9 +16,10 @@
       </li>      
     </ul>
   </div> 
-  <a class="navbar-brand" href="#">Olá, {{autenticacaoService.getUsuarioLogado().nomeUsuario}}</a> 
+  <a class="navbar-brand" href="#">Olá, {{autenticacaoService.getUsuarioLogado().nomeUsuario}},</a> 
+  <a class="navbar-brand" href="#">hoje é dia {{dataHoje | date: 'dd/MM/yyyy'}}</a> 
 </nav>
-<div class="body container">  
+<div class="body container">
+  <notification></notification>     
   <router-outlet></router-outlet>
-  <notification></notification>
 </div>

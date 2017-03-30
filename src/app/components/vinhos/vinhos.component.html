@@ -1,5 +1,9 @@
 <h2>Gestão de Vinhos</h2>
 
+<div class="form-group">
+      <label for="vinho">Buscar vinho</label>
+      <input type="text" class="form-control" id="nome" name="buscaVinho" maxlength="50" [(ngModel)]="buscaVinho" required #nome="ngModel">      
+    </div>
 <table class="table table-stripped table-hover">
   <thead>
     <tr>
@@ -14,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vinho of vinhos">
+    <tr *ngFor="let vinho of vinhos | tableFilter: buscaVinho">
       <th scope="row">{{vinho.id}}</th>
       <th>{{vinho.nome}}</th>
       <th>{{vinho.uva}}</th>

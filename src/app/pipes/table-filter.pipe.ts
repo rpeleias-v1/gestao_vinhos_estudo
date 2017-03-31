@@ -1,20 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Vinho } from '../models/vinho';
-
 @Pipe({
   name: 'tableFilter',
   pure: false
 })
 export class TableFilterPipe implements PipeTransform {
 
-  transform(vinhos: Vinho[], nome: string): any {
+  transform(objetos: any[], nome: string): any {
     if(nome !== undefined && nome !== '') {
-      return vinhos.filter((vinho:Vinho) => {
-        return vinho.nome.indexOf(nome) !== -1;
+      return objetos.filter((objeto:any) => {
+        for(let property in objeto) {          
+          if((objeto[property].toString()).indexOf(nome) !== -1) {                      
+            return (objeto[property].toString()).indexOf(nome) !== -1;
+          }      
+        }        
       });
     } else {
-      return vinhos;
+      return objetos;
     }
     
   }

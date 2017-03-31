@@ -15,6 +15,8 @@ export class VinhosComponent implements OnInit {
 
   vinhos: Array<Vinho> = new Array<Vinho>();
 
+  vinhoSelecionado: Vinho;
+
   buscaVinho: string;
 
   constructor(private router: Router, private vinhosService: VinhosService, private notificacaoService: NotificacaoService) { }
@@ -48,6 +50,10 @@ export class VinhosComponent implements OnInit {
       .catch(error => {
         this.notificacaoService.adicionar(new Notificacao(`Erro ao excluir vinho`, 'danger'));                                
       });
+  }
+
+  selecionar(event:any) {
+    this.vinhoSelecionado = event;
   }
 
 }

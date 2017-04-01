@@ -21,7 +21,7 @@ import { CadastroVinhosComponent } from './components/cadastro-vinhos/cadastro-v
 import { LoginComponent } from './components/login/login.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { TableFilterPipe } from './pipes/table-filter.pipe';
-//import { DataTableComponent } from './components/data-table/data-table/data-table.component';
+import { DataTableComponent } from './components/data-table/data-table/data-table.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { TableFilterPipe } from './pipes/table-filter.pipe';
     LoginComponent,
     NotificationComponent,
     TableFilterPipe,
-    //DataTableComponent
+    DataTableComponent
   ],
   imports: [
     BrowserModule,

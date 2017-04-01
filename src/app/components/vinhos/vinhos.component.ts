@@ -14,15 +14,23 @@ import { NotificacaoService } from '../../services/notificacao.service';
 export class VinhosComponent implements OnInit {
 
   vinhos: Array<Vinho> = new Array<Vinho>();
-
   vinhoSelecionado: Vinho;
-
   buscaVinho: string;
+  titulosTabela: {};
 
   constructor(private router: Router, private vinhosService: VinhosService, private notificacaoService: NotificacaoService) { }
 
   ngOnInit() {
-    this.listar();
+    this.listar();  
+    this.titulosTabela = {
+      id: '#', 
+      nome: 'Nome', 
+      uva: 'Uva', 
+      classificacao: 'Classificação', 
+      anoSafra: 'Safra', 
+      fabricante: 'Fabricante',
+      paisOrigem: 'País de Origem'
+    }
   }
 
   private listar(): void {
@@ -51,9 +59,4 @@ export class VinhosComponent implements OnInit {
         this.notificacaoService.adicionar(new Notificacao(`Erro ao excluir vinho`, 'danger'));                                
       });
   }
-
-  selecionar(event:any) {
-    this.vinhoSelecionado = event;
-  }
-
 }

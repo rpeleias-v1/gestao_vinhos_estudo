@@ -1,36 +1,7 @@
 <h2>Gestão de Vinhos</h2>
 
-<div class="form-group">
-      <label for="vinho">Buscar vinho</label>
-      <input type="text" class="form-control" id="nome" name="buscaVinho" maxlength="50" [(ngModel)]="buscaVinho" required #nome="ngModel">      
-    </div>
-<table class="table table-stripped table-hover">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Nome</th>
-      <th>Uva</th>
-      <th>Classificação</th>
-      <th>Safra</th>
-      <th>Fabricante</th>
-      <th>País de Origem</th>                
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let vinho of vinhos | tableFilter: buscaVinho" (click)="selecionar(vinho)">
-      <th scope="row">{{vinho.id}}</th>
-      <th>{{vinho.nome}}</th>
-      <th>{{vinho.uva}}</th>
-      <th>{{vinho.classificacao}}</th>
-      <th>{{vinho.anoSafra}}</th>
-      <th>{{vinho.fabricante}}</th>
-      <th>{{vinho.paisOrigem}}</th>      
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="vinhoSelecionado" class="float-right">
-  <button (click)="visualizar(vinhoSelecionado)" class="btn btn-primary">Visualizar</button>     
-  <button (click)="editar(vinhoSelecionado)" class="btn btn-warning">Editar</button>
-  <button (click)="excluir(vinhoSelecionado)" class="btn btn-danger">Excluir</button>     
-</div> 
+<data-table tituloBusca="Buscar vinhos" [titulosTabela]="titulosTabela" 
+        [linhas]="vinhos"        
+        (visualizar)="visualizar($event)"
+        (editar)="editar($event)"
+        (excluir)="excluir($event)"></data-table>

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Cadastro de Novo Vinho</h2>
-  <form #vinhoForm="ngForm" (ngSubmit)="salvar();vinhoForm.reset()">
+  <form #vinhoForm="ngForm" (ngSubmit)="salvar();vinhoForm.reset()" novalidate>
     <div class="form-group">
       <label for="vinho">Nome</label>
       <input type="text" class="form-control" id="nome" name="nome" maxlength="50" [(ngModel)]="vinho.nome" required #nome="ngModel">      

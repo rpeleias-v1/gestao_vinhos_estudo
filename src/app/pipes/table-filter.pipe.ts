@@ -17,8 +17,6 @@ export class TableFilterPipe implements PipeTransform {
       });
     } else {
       return objetos;
-    }
-    
+    }    
   }
-
 }

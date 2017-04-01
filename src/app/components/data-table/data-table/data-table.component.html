@@ -1,18 +1,24 @@
 <div class="form-group">
-      <label for="vinho">Buscar vinho</label>
-      <input type="text" class="form-control" id="nome" name="buscaVinho" maxlength="50" [(ngModel)]="campoBusca" required #nome="ngModel">      
+      <label for="vinho">{{tituloBusca}}</label>
+      <input type="text" class="form-control" id="nome" name="campoBusca" maxlength="50" [(ngModel)]="campoBusca" required #nome="ngModel">      
     </div>
 <table class="table table-stripped table-hover">
   <thead>
-    <tr *ngFor="let chave in chaves">
-      <th><{{propriedades[chave]}}/th>
+    <tr>
+      <th *ngFor="let propriedade of propriedades">{{titulosTabela[propriedade]}}</th>
     </tr>    
   </thead>
   <tbody>
-    <tr *ngFor="let linha of linhas | tableFilter: campoBusca">
-      <span *ngFor="let chave in chaves">
-        <th>{{linha[chave]}}</th>
-      </span>
+    <tr *ngFor="let linha of linhas | tableFilter: campoBusca" (click)="selecionarLinha(linha)">      
+        <th *ngFor="let propriedade of propriedades"> 
+          {{linha[propriedade]}}
+        </th>      
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="linhaSelecionada" class="float-right">
+  <button (click)="visualizarLinha(linhaSelecionada)" class="btn btn-primary">Visualizar</button>     
+  <button (click)="editarLinha(linhaSelecionada)" class="btn btn-warning">Editar</button>
+  <button (click)="excluirLinha(linhaSelecionada)" class="btn btn-danger">Excluir</button>     
+</div> 
